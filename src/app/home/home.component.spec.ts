@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CityWeatherComponent } from '../city-weather/city-weather.component';
 
 import { HomeComponent } from './home.component';
 
@@ -8,7 +10,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ HomeComponent, CityWeatherComponent ],
+      imports: [ HttpClientModule ]
     })
     .compileComponents();
   });
@@ -23,7 +26,13 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should render five city weather cards', () => {
-    
-  // });
+  it('should contain five cities', () => {
+      expect(component.cities.length).toBe(5);
+  });
+
+  it('should render five city weather components', () => {
+      fixture.detectChanges();
+      let cityWeatherCards = fixture.nativeElement.querySelectorAll('app-city-weather');
+      expect(cityWeatherCards.length).toBe(5);
+  });
 });
