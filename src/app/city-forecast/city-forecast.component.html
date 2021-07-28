@@ -1,0 +1,24 @@
+<ng-container *ngIf="forecast$ | async as forecast">
+    <h1>{{forecast.city.name}}</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Weather</th>
+                <th>Temperature</th>
+                <th>Sea Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let l of forecast.list">
+                <td scope="row">{{l.dt | convertDateTz : forecast.city.timezone | date: 'mediumDate' : 'UTC'}}</td>
+                <td scope="row">
+                   <img width="30px" class="weather-icon" [alt]="l.weather[0].icon" [src]="l.weather[0].icon | weatherIcon">
+                    {{l.weather[0].main}}
+                </td>
+                <td>{{l.temp.morn}}℃</td>
+                <td>{{l.pressure}} hPa</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

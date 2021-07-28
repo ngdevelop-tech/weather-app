@@ -1,0 +1,13 @@
+.card{
+    box-shadow: #d2d2d2 5px 5px 5px ;
+    
+    &:hover{
+        box-shadow: #b2b2b2 5px 5px 5px ;
+        cursor: pointer;
+    }
+
+    .details{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

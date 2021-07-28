@@ -1,0 +1,18 @@
+<div class="card m-2 border-primary" *ngIf="weatherDetails$ | async as details" [routerLink]="['/forecast', details.name]">
+  <div class="card-body">
+    <div class="details">
+        <h4>{{details.name}}</h4>
+        <div class="display-6">
+            <strong>{{details.main.temp}}℃</strong> 
+        </div>
+        <div>
+            <img class="weather-icon" [src]="details.weather[0]?.icon | weatherIcon"> 
+            {{details.weather[0]?.main}}
+        </div>
+        <div>
+            <div> Sunrise ☀ {{details.sys.sunrise | convertDateTz : details.timezone | date : 'hh:mm:ss a' : 'UTC'}}</div>
+            <div>Sunset 🌅 {{details.sys.sunset| convertDateTz : details.timezone | date : 'hh:mm:ss a' : 'UTC'}}</div>
+        </div>
+    </div>
+  </div>
+</div>
