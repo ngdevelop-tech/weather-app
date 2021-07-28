@@ -13,6 +13,12 @@ export class WeatherService {
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * Get city weather details
+   * @param city country name ex. London
+   * @param countryCode country code ex. uk
+   * @returns 
+   */
   getWeatherByCity(city: string, countryCode: string) {
     let params = {
       q: `${city},${countryCode}`,
@@ -23,6 +29,11 @@ export class WeatherService {
     return this.httpClient.get<CityWeather>(this.BASE_URL + '/weather', { params });
   }
 
+  /**
+   * Get City weather forecast for five days
+   * @param city city name ex. London
+   * @returns 
+   */
   getForecastByCity(city: string) {
     let params = {
       q: `${city}`,
